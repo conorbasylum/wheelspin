@@ -46,7 +46,7 @@ if(buttonstate1 == LOW)
 		roboclaw.ForwardBackwardM2(address1,127);
 		roboclaw.ForwardBackwardM1(address2,100); //start controller2 forward at half speed
 		roboclaw.ForwardBackwardM2(address2,100);
-		digitalWrite(PLDuino::RELAY1, HIGH);
+		digitalWrite(PLDuino::RELAY1, HIGH); // smoke machine relay closed
 
 		delay(7000);
   
@@ -55,7 +55,7 @@ if(buttonstate1 == LOW)
 		roboclaw.ForwardBackwardM2(address1,0);
 		roboclaw.ForwardBackwardM1(address2,100); // controller 2 forward at half speed
 		roboclaw.ForwardBackwardM2(address2,100);
-		digitalWrite(PLDuino::RELAY1, LOW);
+		digitalWrite(PLDuino::RELAY1, LOW); // smoke machine relay opened
 		
 		delay(500);
 		
