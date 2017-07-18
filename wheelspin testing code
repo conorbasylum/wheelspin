@@ -1,0 +1,88 @@
+//includes Plduino library
+#include <PLDuino.h>
+using namespace PLDuino;
+
+//Includes required to use Roboclaw library
+#include <SoftwareSerial.h>
+#include "RoboClaw.h"
+
+
+//See limitations of Arduino SoftwareSerial
+//HardwareSerial &mySerial = Serial3;
+	
+RoboClaw roboclaw(&Serial3,10000);
+//unsigned long previousMillis = 0; 
+int buttonstate1 = 0;
+//int buttonstate2 = 0;
+//int buttonstate3 = 0;
+
+#define address1 0x80 // address of each motor controller
+#define address2 0x82 //
+
+void setup() {
+  
+  PLDuino::init();
+  
+//  pinMode(30, INPUT);
+//  pinMode(31, INPUT);
+//  pinMode(32, INPUT);
+  
+							 //Open roboclaw serial ports
+  roboclaw.begin(9600);
+  //Serial.begin(9600);
+}
+
+void loop() {
+
+ 
+
+  buttonstate1 = digitalRead(30);
+  
+
+if(buttonstate1 == LOW)
+{
+
+		roboclaw.ForwardBackwardM1(address1,127); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM2(address1,127);
+		roboclaw.ForwardBackwardM1(address2,100); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM2(address2,100);
+		digitalWrite(PLDuino::RELAY1, HIGH);
+
+		delay(7000);
+  
+	
+		roboclaw.ForwardBackwardM1(address1,0); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM2(address1,0);
+		roboclaw.ForwardBackwardM1(address2,100); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM2(address2,100);
+		digitalWrite(PLDuino::RELAY1, LOW);
+		
+		delay(500);
+		
+		roboclaw.ForwardBackwardM1(address1,100); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM2(address1,100);
+		roboclaw.ForwardBackwardM1(address2,100); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM2(address2,100);
+		delay(20000);
+  
+  
+		roboclaw.ForwardBackwardM1(address1,0);
+		roboclaw.ForwardBackwardM2(address1,0); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM1(address2,0); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM2(address2,0);
+		delay(4250);
+  
+}
+
+else
+{
+
+  roboclaw.ForwardBackwardM1(address1,64); //motor in stop state
+  roboclaw.ForwardBackwardM2(address1,64);
+  roboclaw.ForwardBackwardM1(address2,64); //motor in stop state
+  roboclaw.ForwardBackwardM2(address2,64);
+}
+
+
+
+}
