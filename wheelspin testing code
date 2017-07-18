@@ -42,33 +42,33 @@ void loop() {
 if(buttonstate1 == LOW)
 {
 
-		roboclaw.ForwardBackwardM1(address1,127); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM1(address1,127); //start controller1 forward at half speed
 		roboclaw.ForwardBackwardM2(address1,127);
-		roboclaw.ForwardBackwardM1(address2,100); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM1(address2,100); //start controller2 forward at half speed
 		roboclaw.ForwardBackwardM2(address2,100);
 		digitalWrite(PLDuino::RELAY1, HIGH);
 
 		delay(7000);
   
 	
-		roboclaw.ForwardBackwardM1(address1,0); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM1(address1,0); // controller1 backward at full speed
 		roboclaw.ForwardBackwardM2(address1,0);
-		roboclaw.ForwardBackwardM1(address2,100); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM1(address2,100); // controller 2 forward at half speed
 		roboclaw.ForwardBackwardM2(address2,100);
 		digitalWrite(PLDuino::RELAY1, LOW);
 		
 		delay(500);
 		
-		roboclaw.ForwardBackwardM1(address1,100); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM1(address1,100); //controller 1 forward at half speed
 		roboclaw.ForwardBackwardM2(address1,100);
-		roboclaw.ForwardBackwardM1(address2,100); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM1(address2,100); //controller 2 forward at half speed
 		roboclaw.ForwardBackwardM2(address2,100);
 		delay(20000);
   
   
 		roboclaw.ForwardBackwardM1(address1,0);
-		roboclaw.ForwardBackwardM2(address1,0); //start Motor1 forward at half speed
-		roboclaw.ForwardBackwardM1(address2,0); //start Motor1 forward at half speed
+		roboclaw.ForwardBackwardM2(address1,0); //controller1 backward at full speed
+		roboclaw.ForwardBackwardM1(address2,0); //controller2 backward at full speed
 		roboclaw.ForwardBackwardM2(address2,0);
 		delay(4250);
   
